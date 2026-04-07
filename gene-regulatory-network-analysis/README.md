@@ -4,7 +4,7 @@ A computational pipeline to quantify transcription factor activity from high-dim
 
 ## Overview
 
-This project analyzes large-scale biomedical datasets totaling over **9.5 million data points** — an expression matrix of 20,530 genes across 420 samples and a regulatory network of **1.02 million interaction records** — to infer transcription factor activity and its association with clinical biomarkers.
+This project analyzes large-scale biomedical datasets totaling over **9.5 million data points** - an expression matrix of 20,530 genes across 420 samples and a regulatory network of **1.02 million interaction records** - to infer transcription factor activity and its association with clinical biomarkers.
 
 The VIPER algorithm (Virtual Inference of Protein-activity by Enriched Regulon analysis) is used to transform high-dimensional gene expression matrices into interpretable activity scores. Unlike simple mRNA-level analysis, VIPER estimates TF activity by evaluating the coordinated expression of its ChIP-seq-derived target genes, providing a more functional interpretation of regulatory influence.
 
@@ -111,9 +111,9 @@ Rscript pipeline.R
 
 Place input files in the `data/` directory:
 
-1. **`LIHC_expression_data_clean.xlsx`** — TCGA-LIHC RNA-Seq normalized expression matrix (genes as rows, TCGA sample barcodes as columns)
-2. **`NFATC3.Liver.tsv`** — ChIP-Atlas export for NFATC3 in liver tissue (HepG2). Download from [ChIP-Atlas CoLo](https://chip-atlas.org/colo): select Antigen = NFATC3, Cell Type = Liver
-3. **`NFAT5.Liver.tsv`** — Same as above for NFAT5
+1. **`LIHC_expression_data_clean.xlsx`** - TCGA-LIHC RNA-Seq normalized expression matrix (genes as rows, TCGA sample barcodes as columns)
+2. **`NFATC3.Liver.tsv`** - ChIP-Atlas export for NFATC3 in liver tissue (HepG2). Download from [ChIP-Atlas CoLo](https://chip-atlas.org/colo): select Antigen = NFATC3, Cell Type = Liver
+3. **`NFAT5.Liver.tsv`** - Same as above for NFAT5
 
 ## Output Files
 

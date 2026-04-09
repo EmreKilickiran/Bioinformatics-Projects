@@ -4,7 +4,7 @@ A computational pipeline to quantify transcription factor activity from high-dim
 
 ## Overview
 
-This project analyzes large-scale biomedical datasets totaling over **9.5 million data points** - an expression matrix of 20,530 genes across 420 samples and a regulatory network of **1.02 million interaction records** - to infer transcription factor activity and its association with clinical biomarkers.
+This project analyzes large-scale biomedical datasets totaling over 9.5 million data points - an expression matrix of 20,530 genes across 420 samples and a regulatory network of 1.02 million interaction records - to infer transcription factor activity and its association with clinical biomarkers.
 
 The VIPER algorithm (Virtual Inference of Protein-activity by Enriched Regulon analysis) is used to transform high-dimensional gene expression matrices into interpretable activity scores. Unlike simple mRNA-level analysis, VIPER estimates TF activity by evaluating the coordinated expression of its ChIP-seq-derived target genes, providing a more functional interpretation of regulatory influence.
 
@@ -12,10 +12,10 @@ The VIPER algorithm (Virtual Inference of Protein-activity by Enriched Regulon a
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│                    INPUT DATA                                 │
-│  TCGA-LIHC: 20,530 genes × 420 samples (RNA-Seq)            │
+│                    INPUT DATA                                │
+│  TCGA-LIHC: 20,530 genes × 420 samples (RNA-Seq)             │
 │  ChIP-Atlas: TF binding targets from HepG2 liver cells       │
-│  Regulatory network: 1.02M interaction records                │
+│  Regulatory network: 1.02M interaction records               │
 └─────────────────────────┬────────────────────────────────────┘
                           │
               ┌───────────▼────────────┐
@@ -27,14 +27,14 @@ The VIPER algorithm (Virtual Inference of Protein-activity by Enriched Regulon a
                           │
             ┌─────────────┴─────────────┐
             │                           │
-   ┌────────▼─────────┐      ┌─────────▼────────┐
+   ┌────────▼──────────┐      ┌─────────▼─────────┐
    │  NFATC3           │      │  NFAT5            │
    │                   │      │                   │
    │  ChIP-Atlas       │      │  ChIP-Atlas       │
    │  regulon (HepG2)  │      │  regulon (HepG2)  │
    └────────┬──────────┘      └─────────┬─────────┘
             │                           │
-   ┌────────▼──────────┐      ┌─────────▼─────────┐
+   ┌────────▼──────────┐      ┌─────────▼──────────┐
    │  VIPER Activity   │      │  VIPER Activity    │
    │  Scoring          │      │  Scoring           │
    └────────┬──────────┘      └─────────┬──────────┘

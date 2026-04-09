@@ -99,12 +99,12 @@ Integrates 16S rRNA genus-level abundances with TPM-normalized RNA-Seq transcrip
 │   ├── 03_beta_diversity.R             # Jaccard + UniFrac + PERMANOVA
 │   ├── 04_differential_abundance.R     # ANCOM-BC2 analysis
 │   └── 05_cross_omics_correlation.R    # 16S × RNA-Seq Spearman pipeline
-├── data/                               # (not tracked — add your data here)
+├── data/                               # (not tracked - add your data here)
 │   ├── DataExport.xlsx
 │   ├── MappingFile-v12.txt
 │   ├── TPM_normalized_data.csv
 │   └── merged_metadata_corrected.csv
-└── results/                            # (generated — not tracked)
+└── results/                            # (generated - not tracked)
 ```
 
 ## Usage

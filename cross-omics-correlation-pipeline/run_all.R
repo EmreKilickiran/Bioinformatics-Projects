@@ -1,7 +1,6 @@
 #!/usr/bin/env Rscript
-# =============================================================================
+# 
 # run_all.R — Execute the Full Analysis Pipeline
-# =============================================================================
 #
 # Runs all analysis modules in sequence:
 #   1. Relative abundance visualization (phylum level)
@@ -14,9 +13,7 @@
 #   Rscript run_all.R          # Run all modules
 #   Rscript run_all.R 3        # Run only module 3 (beta diversity)
 #   Rscript run_all.R 1 2 3    # Run modules 1, 2, and 3
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
+
 
 args <- commandArgs(trailingOnly = TRUE)
 
@@ -34,10 +31,8 @@ if (length(args) == 0) {
   to_run <- args
 }
 
-cat("=============================================================\n")
 cat(" Oral-Gut-Liver Axis Microbiome Analysis Pipeline\n")
 cat(" Modules to run:", paste(to_run, collapse = ", "), "\n")
-cat("=============================================================\n")
 
 for (mod in to_run) {
   if (mod %in% names(modules)) {
@@ -48,6 +43,4 @@ for (mod in to_run) {
   }
 }
 
-cat("\n=============================================================\n")
 cat(" Pipeline complete. Results saved to: results/\n")
-cat("=============================================================\n")

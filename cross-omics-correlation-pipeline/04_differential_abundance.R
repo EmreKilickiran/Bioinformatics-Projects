@@ -1,6 +1,5 @@
-# =============================================================================
+# 
 # 04_differential_abundance.R — ANCOM-BC2 Differential Abundance Analysis
-# =============================================================================
 #
 # Identifies differentially abundant taxa across treatment conditions using
 # ANCOM-BC2 (Analysis of Compositions of Microbiomes with Bias Correction),
@@ -11,9 +10,7 @@
 #   - Heatmap of top differentially abundant species
 #   - Boxplot and violin plots for top species
 #   - LEfSe-style LDA barplot (log2 fold change)
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
+
 
 source("R/00_config.R")
 
@@ -39,9 +36,8 @@ phy <- phyloseq(
 
 cat("Phyloseq:", nsamples(phy), "samples,", ntaxa(phy), "taxa\n")
 
-# =============================================================================
+
 # ANCOM-BC2
-# =============================================================================
 
 cat("Running ANCOM-BC2 (this may take a few minutes)...\n")
 
@@ -74,9 +70,8 @@ cat("Significant taxa (q < 0.05):", length(unique(sig_res$taxon)), "\n")
 write.xlsx(sig_res,
            file.path(RESULTS_DIR, "04_ANCOMBC2_SignificantSpecies.xlsx"))
 
-# =============================================================================
+
 # Heatmap — Top Differentially Abundant Species
-# =============================================================================
 
 sig_taxa <- unique(sig_res$taxon)
 top_taxa <- head(sig_taxa, 20)
@@ -122,9 +117,8 @@ if (length(top_taxa) > 0) {
   cat("Heatmap saved.\n")
 }
 
-# =============================================================================
+
 # Boxplots & Violin Plots — Top 5 Species
-# =============================================================================
 
 otu_wide <- read_excel(DATA_PATH, sheet = "Abund_Species_wide")
 otu_long <- otu_wide %>%
@@ -159,9 +153,8 @@ if (length(sig_to_plot) > 0) {
   cat("Boxplots saved.\n")
 }
 
-# =============================================================================
+
 # LEfSe-style LDA Barplot (Log2 Fold Change)
-# =============================================================================
 
 lda_data <- sig_res %>%
   group_by(taxon) %>%

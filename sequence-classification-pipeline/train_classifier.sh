@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-# =============================================================================
+#
 # SILVA 138.1 Naive Bayes Classifier Training
-# =============================================================================
 #
 # This script trains a region-specific (341F/785R) Naive Bayes taxonomic
 # classifier using the SILVA 138.1 SSURef NR99 reference database.
@@ -20,10 +19,7 @@
 #   - Memory: ~640 GB (for classifier training step)
 #   - CPUs: 8
 #   - Time: ~24-48 hours
-#
-# Author : Yunus Emre Kılıçkıran
-# Project: Schneider Lab, CRTD, TU Dresden
-# =============================================================================
+
 
 set -euo pipefail
 

@@ -15,13 +15,13 @@ Raw FASTQ → Lane Merging → Primer Removal → DADA2 Denoising → Taxonomic 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
 │                    RAW SEQUENCING DATA                          │
-│              Paired-end Illumina (2 × 300 bp)                  │
+│              Paired-end Illumina (2 × 300 bp)                   │
 │                    ~3.6 GB, 2 lanes                             │
 └──────────────────────┬──────────────────────────────────────────┘
                        │
             ┌──────────▼──────────┐
             │  1. Lane Merging    │  Concatenate L1 + L2 per sample
-            │  2. QIIME 2 Import │  Manifest-based paired-end import
+            │  2. QIIME 2 Import  │  Manifest-based paired-end import
             └──────────┬──────────┘
                        │
             ┌──────────▼──────────┐
@@ -38,8 +38,8 @@ Raw FASTQ → Lane Merging → Primer Removal → DADA2 Denoising → Taxonomic 
               ┌────────┴────────┐
               │                 │
     ┌─────────▼────────┐  ┌────▼─────────────────┐
-    │  ASV Feature      │  │  Representative       │
-    │  Table            │  │  Sequences             │
+    │  ASV Feature     │  │  Representative      │
+    │  Table           │  │  Sequences           │
     └─────────┬────────┘  └────┬─────────────────┘
               │                │
               │     ┌──────────▼──────────────┐
@@ -67,7 +67,7 @@ Raw FASTQ → Lane Merging → Primer Removal → DADA2 Denoising → Taxonomic 
               ┌───────────▼───────────┐
               │  9. Export            │
               │  BIOM + Newick + TSV  │
-              │  → R / phyloseq      │
+              │  → R / phyloseq       │
               └───────────────────────┘
 ```
 

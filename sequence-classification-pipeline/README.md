@@ -56,7 +56,7 @@ Raw FASTQ → Lane Merging → Primer Removal → DADA2 Denoising → Taxonomic 
               │
      ┌────────┴────────────┐
      │                     │
-┌────▼──────────┐   ┌─────▼──────────────┐
+┌────▼──────────┐   ┌──────▼─────────────┐
 │ 7. Phylogeny  │   │ 8. Diversity       │
 │  MAFFT align  │──►│  Alpha: Shannon,   │
 │  FastTree ML  │   │    Faith's PD      │

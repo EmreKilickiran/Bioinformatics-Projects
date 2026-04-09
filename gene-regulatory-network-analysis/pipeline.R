@@ -1,14 +1,6 @@
-# =============================================================================
+# 
 # High-Dimensional Data Analysis and Statistical Modeling of Gene Regulatory
 # Networks in Liver Cancer
-# =============================================================================
-#
-# Description:
-#   A computational pipeline to quantify transcription factor (TF) activity
-#   from high-dimensional genomic datasets and identify statistically
-#   significant regulatory patterns associated with tumor progression in
-#   hepatocellular carcinoma (TCGA-LIHC cohort).
-#
 #
 # Pipeline Overview:
 #   1. Load TCGA-LIHC gene expression data and sample metadata
@@ -26,14 +18,9 @@
 #     Carcinoma), RNA-Seq normalized counts
 #   - TF binding targets: ChIP-Atlas (https://chip-atlas.org), liver-specific
 #     ChIP-seq experiments in HepG2 cells
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
 
 
-# =============================================================================
 # 1. SETUP & CONFIGURATION
-# =============================================================================
 
 # --- Install and load required packages --------------------------------------
 required_cran <- c("tidyverse", "openxlsx", "ggplot2")
@@ -85,14 +72,9 @@ NORMAL_SUFFIX <- "-11"
 SAMPLE_COLORS <- c("Normal" = "#4575B4", "Tumor" = "#D73027")
 
 
-# =============================================================================
 # 2. LOAD GENE EXPRESSION DATA
-# =============================================================================
 
-cat("=============================================================\n")
 cat(" TF Activity Analysis Pipeline — TCGA-LIHC\n")
-cat("=============================================================\n\n")
-
 cat("[Step 1] Loading TCGA-LIHC expression matrix...\n")
 
 expr <- read.xlsx(EXPRESSION_FILE, rowNames = TRUE)
@@ -120,9 +102,7 @@ biomarker_expr <- expr_mat[BIOMARKER_GENE, ]
 cat("  Biomarker:", BIOMARKER_GENE, "expression loaded.\n\n")
 
 
-# =============================================================================
 # 3. REGULON CONSTRUCTION & VIPER ACTIVITY SCORING
-# =============================================================================
 
 #' Build a VIPER regulon object from ChIP-Atlas binding data
 #'
@@ -181,9 +161,7 @@ compute_viper_activity <- function(expr_mat, regulon_list, tf_name) {
 }
 
 
-# =============================================================================
 # 4. CORRELATION ANALYSIS & VISUALIZATION
-# =============================================================================
 
 #' Perform correlation analysis and generate scatter plot
 #'
@@ -293,18 +271,12 @@ analyze_and_plot <- function(activity_scores, biomarker_expr, sample_type,
   return(list(plot = p, stats = stats_df, data = plot_df))
 }
 
-
-# =============================================================================
 # 5. MAIN EXECUTION — Run for Each Transcription Factor
-# =============================================================================
 
 all_results <- list()
 
 for (tf_name in names(REGULON_FILES)) {
-
-  cat("=============================================================\n")
   cat(" Processing:", tf_name, "\n")
-  cat("=============================================================\n\n")
 
   # Build regulon from ChIP-Atlas data
   regulon_list <- build_regulon(REGULON_FILES[[tf_name]], tf_name)
@@ -326,13 +298,10 @@ for (tf_name in names(REGULON_FILES)) {
 }
 
 
-# =============================================================================
 # 6. COMBINED SUMMARY
-# =============================================================================
 
-cat("=============================================================\n")
 cat(" Summary\n")
-cat("=============================================================\n\n")
+
 
 # Combine all statistics into one table
 summary_stats <- bind_rows(lapply(all_results, function(r) r$stats))
@@ -345,6 +314,4 @@ cat("Combined statistics saved.\n\n")
 # Print summary table
 print(summary_stats)
 
-cat("\n=============================================================\n")
 cat(" Pipeline complete. Results saved to:", RESULTS_DIR, "\n")
-cat("=============================================================\n")

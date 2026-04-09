@@ -1,6 +1,4 @@
-# =============================================================================
 # 04_differential_expression.R — DE Analysis Across Disease Stages
-# =============================================================================
 #
 # Performs differential expression testing for each cell type across six
 # sequential liver disease stages (NORM → HO → STEA → NASH → FIB → CIRR),
@@ -15,9 +13,7 @@
 #
 # Input:  seurat_annotated.rds (with cell_type and Treatment metadata)
 # Output: DE gene tables, ratio heatmaps, marker dot plots
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
+
 
 suppressPackageStartupMessages({
   library(Seurat)
@@ -44,9 +40,8 @@ PADJ_CUTOFF    <- 0.05
 # Parallel workers
 plan("multicore", workers = min(6, parallel::detectCores()))
 
-# =============================================================================
+
 # STEP 1: Load Annotated Object
-# =============================================================================
 
 cat("[1/4] Loading annotated object...\n")
 
@@ -59,9 +54,8 @@ cell_types <- sort(unique(obj$cell_type))
 cat("  Cell types:", length(cell_types), "\n")
 cat("  Disease stages:", paste(DISEASE_STAGES, collapse = " → "), "\n")
 
-# =============================================================================
+
 # STEP 2: DE Testing (Each Cell Type × Disease Stage vs NORM)
-# =============================================================================
 
 cat("[2/4] Running DE tests (", TEST_METHOD, ", ref =", REFERENCE, ")...\n")
 
@@ -108,9 +102,8 @@ close(pb)
 
 cat("\n  DE results saved:", out_tsv, "\n")
 
-# =============================================================================
+
 # STEP 3: DE Ratio Heatmap
-# =============================================================================
 
 cat("[3/4] Computing DE ratio heatmap...\n")
 
@@ -157,9 +150,8 @@ write.table(as.data.frame(mat),
 
 cat("  Heatmap saved.\n")
 
-# =============================================================================
+
 # STEP 4: Marker Gene Dot Plots by Treatment
-# =============================================================================
 
 cat("[4/4] Generating marker gene dot plots...\n")
 

@@ -10,7 +10,7 @@ This self-directed project builds an end-to-end scRNA-seq pipeline from raw coun
 
 ```
 ┌────────────────────────────────────────────────────────────┐
-│                  RAW COUNT MATRIX                           │
+│                  RAW COUNT MATRIX                          │
 │           310,000+ cells × 20,000+ genes                   │
 └──────────────────────┬─────────────────────────────────────┘
                        │
@@ -22,7 +22,7 @@ This self-directed project builds an end-to-end scRNA-seq pipeline from raw coun
          │  • Residual-based doublet  │
          │    filtering (3×MAD)       │
          │  • LogNormalize (SF=10⁴)   │
-         │  • HVG: VST, top 3,000    │
+         │  • HVG: VST, top 3,000     │
          │  • Scaling                 │
          └─────────────┬──────────────┘
                        │
@@ -53,8 +53,8 @@ This self-directed project builds an end-to-end scRNA-seq pipeline from raw coun
          │                            │
          │  • Per cell type × stage   │
          │    (vs NORM reference)     │
-         │  • LR test, FDR < 0.05    │
-         │  • Ratio score heatmap:   │
+         │  • LR test, FDR < 0.05     │
+         │  • Ratio score heatmap:    │
          │    (Up-Down)/(Up+Down)     │
          │  • Marker gene dot plots   │
          └─────────────┬──────────────┘
@@ -77,7 +77,7 @@ This self-directed project builds an end-to-end scRNA-seq pipeline from raw coun
 | Doublet filtering | 3×MAD residual | Data-driven removal of outliers from nCount–nFeature trend |
 | HVGs | 3,000 (VST) | Captures sufficient biological variation for liver heterogeneity |
 | PCs for clustering | 20 | Determined from elbow plot inflection point |
-| Resolution | 0.15 | Selected from sweep (0.1–1.0) for optimal cluster separation quality |
+| Resolution | 0.15 | Selected from sweep (0.1-1.0) for optimal cluster separation quality |
 | Clusters → Cell types | 26 → 11 | SingleR pseudobulk against MacParland liver atlas |
 | DE reference | NORM | All stages compared to healthy tissue baseline |
 | DE ratio score | (Up−Down)/(Up+Down) | Custom metric for directional balance of transcriptional shifts |

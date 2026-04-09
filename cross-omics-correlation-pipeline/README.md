@@ -10,7 +10,7 @@ The underlying system was modeled as a high-dimensional interaction network betw
 
 ```
 ┌──────────────────────────────────────────────────────────────┐
-│              INPUT DATA                                       │
+│              INPUT DATA                                      │
 │  16S rRNA: Species/Genus/Phylum abundance matrices           │
 │  RNA-Seq:  TPM-normalized gene expression (~20,000 genes)    │
 │  Metadata: 3 body sites × 6 treatment conditions             │

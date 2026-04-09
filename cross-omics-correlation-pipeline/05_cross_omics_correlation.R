@@ -1,6 +1,5 @@
-# =============================================================================
+# 
 # 05_cross_omics_correlation.R — 16S rRNA × RNA-Seq Correlation Pipeline
-# =============================================================================
 #
 # Integrates 16S rRNA genus-level abundances with TPM-normalized RNA-Seq
 # transcriptomic profiles to identify cross-domain gene–taxa associations.
@@ -10,19 +9,13 @@
 # and Benjamini-Hochberg FDR correction, processing over 52 million
 # gene–taxa correlation pairs through vectorized matrix operations.
 #
-# To capture tissue-specific interaction patterns, the pipeline is executed
-# independently across three body sites (oral swab, gut, liver) and can
-# optionally be stratified by treatment condition.
-#
 # Outputs (per bodysite or bodysite×treatment):
 #   - Full correlation matrix (all gene–taxa pairs)
 #   - Significant correlations (FDR < 0.05, |rho| > 0.5)
 #   - Heatmap of significant correlations
 #   - Heatmap of top 100 genes by FDR-ranked correlation strength
 #   - Gene lists and correlation matrices (Excel)
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
+
 
 source("R/00_config.R")
 
@@ -68,9 +61,8 @@ if (length(EXCLUDE_GROUPS) > 0) {
 
 cat("16S taxa:", nrow(otu), "| RNA genes:", nrow(rna), "\n")
 
-# =============================================================================
+
 # Core Correlation Function
-# =============================================================================
 
 #' Run Spearman correlation between RNA-Seq genes and 16S taxa
 #'
@@ -222,9 +214,8 @@ run_correlation <- function(subset_label, meta_subset, rna_data, otu_data,
   cat("  Complete:", subset_label, "\n")
 }
 
-# =============================================================================
+
 # Execute Analysis
-# =============================================================================
 
 if (ANALYSIS_MODE == "bodysite") {
   # Run per bodysite (swab, KOT, liver)

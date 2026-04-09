@@ -1,6 +1,5 @@
-# =============================================================================
-# 03_beta_diversity.R — Beta Diversity Analysis
-# =============================================================================
+# 
+# 03_beta_diversity.R - Beta Diversity Analysis
 #
 # Computes Jaccard dissimilarity and Weighted UniFrac distances, applies
 # Principal Coordinates Analysis (PCoA) for dimensionality reduction, and
@@ -13,9 +12,7 @@
 #   - Weighted UniFrac PCoA: Treatment and Bodysite colorings
 #   - Weighted UniFrac PCoA: Swab-specific pairwise comparisons
 #   - PERMANOVA statistics (Excel)
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
+
 
 source("R/00_config.R")
 
@@ -33,9 +30,8 @@ meta_data$SampleID <- rownames(meta_data)
 
 cat("Samples:", ncol(otu_mat), "| Taxa:", nrow(otu_mat), "\n")
 
-# =============================================================================
+
 # PART A: JACCARD DISSIMILARITY
-# =============================================================================
 
 cat("\n--- Part A: Jaccard Distance ---\n")
 
@@ -185,9 +181,8 @@ saveWorkbook(wb, file.path(RESULTS_DIR, "03a_BetaDiversity_Jaccard_GlobalPairwis
 
 cat("Jaccard beta diversity complete.\n")
 
-# =============================================================================
+
 # PART B: WEIGHTED UNIFRAC
-# =============================================================================
 
 cat("\n--- Part B: Weighted UniFrac ---\n")
 

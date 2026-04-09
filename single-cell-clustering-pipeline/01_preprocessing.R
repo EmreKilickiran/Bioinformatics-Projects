@@ -1,6 +1,4 @@
-# =============================================================================
 # 01_preprocessing.R — Quality Control, Filtering, Normalization & Scaling
-# =============================================================================
 #
 # Processes raw count matrices for 310,000+ single cells through:
 #   1. QC metric computation (nFeature, nCount, percent.mt)
@@ -13,9 +11,6 @@
 #
 # Input:  raw.rds (raw Seurat/count object)
 # Output: seurat_scaled.rds (QC-filtered, normalized, HVG-identified, scaled)
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
 
 suppressPackageStartupMessages({
   library(Seurat)
@@ -37,9 +32,7 @@ N_HVG         <- 3000    # Number of highly variable genes
 HVG_METHOD    <- "vst"
 TOP_HVG_LABEL <- 20      # Number of top HVGs to label in plot
 
-# =============================================================================
 # STEP 1: Load Raw Data & Initialize Seurat Object
-# =============================================================================
 
 cat("[1/6] Loading raw data...\n")
 
@@ -54,9 +47,8 @@ cat("  Cells:", ncol(seu), "| Genes:", nrow(seu), "\n")
 # Mitochondrial gene percentage
 seu[["percent.mt"]] <- PercentageFeatureSet(seu, pattern = "^MT-|^mt-")
 
-# =============================================================================
+
 # STEP 2: QC Visualization
-# =============================================================================
 
 cat("[2/6] Generating QC plots...\n")
 
@@ -78,9 +70,8 @@ print(
 )
 dev.off()
 
-# =============================================================================
+
 # STEP 3: Quality Filtering
-# =============================================================================
 
 cat("[3/6] Filtering cells...\n")
 
@@ -128,18 +119,16 @@ sink()
 
 cat("  Cells after filtering:", ncol(seu), "\n")
 
-# =============================================================================
+
 # STEP 4: Log-Normalization
-# =============================================================================
 
 cat("[4/6] Normalizing (LogNormalize, scale.factor =", SCALE_FACTOR, ")...\n")
 
 seu <- NormalizeData(seu, normalization.method = NORM_METHOD,
                      scale.factor = SCALE_FACTOR, verbose = FALSE)
 
-# =============================================================================
+
 # STEP 5: Highly Variable Gene Identification
-# =============================================================================
 
 cat("[5/6] Identifying", N_HVG, "highly variable genes (VST)...\n")
 
@@ -156,9 +145,8 @@ dev.off()
 
 cat("  Top HVGs:", paste(head(top_genes, 5), collapse = ", "), "...\n")
 
-# =============================================================================
+
 # STEP 6: Scaling
-# =============================================================================
 
 cat("[6/6] Scaling HVGs...\n")
 

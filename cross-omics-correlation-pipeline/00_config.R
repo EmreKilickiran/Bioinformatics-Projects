@@ -1,17 +1,6 @@
-# =============================================================================
-# config.R — Shared Configuration and Utility Functions
-# =============================================================================
 #
-# Computational Integration and High-Dimensional Correlation Analysis
-# for Oral-Gut-Liver Axis Microbiome Dynamics
+# config.R - Shared Configuration and Utility Functions
 #
-# This file defines shared paths, parameters, and helper functions used
-# across all analysis modules.
-#
-# Author : Yunus Emre Kılıçkıran
-# Lab    : Schneider Lab, CRTD, TU Dresden
-# =============================================================================
-
 # --- Required Packages -------------------------------------------------------
 required_packages <- c(
   "readxl", "dplyr", "tidyr", "ggplot2", "pheatmap", "openxlsx",
@@ -33,7 +22,6 @@ for (pkg in required_packages) {
 }
 
 # --- File Paths --------------------------------------------------------------
-# Modify these paths to match your local or HPC environment.
 
 DATA_PATH <- file.path(
   "data", "DataExport.xlsx"

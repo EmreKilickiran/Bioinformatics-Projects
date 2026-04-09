@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# =============================================================================
+# 
 # End-to-End Computational Pipeline for Automated Sequence Classification
 # and Phylogenetic Analysis
-# =============================================================================
+# 
 #
 # Description:
 #   A fully automated, multi-stage computational pipeline to process raw
@@ -20,17 +20,11 @@
 #   6. Phylogenetic tree reconstruction (MAFFT + FastTree)
 #   7. Alpha & beta diversity analysis
 #   8. Data export for downstream analysis (phyloseq / R)
-#
-# Author : Yunus Emre Kılıçkıran
-# Project: Schneider Lab, CRTD, TU Dresden
-# Date   : 2024
-# =============================================================================
+=
 
 set -euo pipefail
 
-# =============================================================================
 # CONFIGURATION
-# =============================================================================
 
 # --- Paths ---
 PROJECT_DIR=".../16s.bile.new"
@@ -67,9 +61,8 @@ N_THREADS=8
 # --- Metadata ---
 METADATA_FILE="${PROJECT_DIR}/metadata_qiime2_final_clean.tsv"
 
-# =============================================================================
+
 # HELPER FUNCTION
-# =============================================================================
 
 # Wrapper to run QIIME 2 commands via Micromamba
 qiime2_run() {
@@ -83,9 +76,9 @@ log_step() {
     echo "================================================================="
 }
 
-# =============================================================================
-# STAGE 1: LANE MERGING & DATA IMPORT
-# =============================================================================
+
+# STAGE 1: LANE MERGING & DATA IMPORT----------------------
+
 # Raw data was sequenced across two lanes (L1, L2).
 # Merge corresponding lane files per sample before import.
 
@@ -120,9 +113,9 @@ stage_1_import() {
     echo "     to determine optimal truncation parameters."
 }
 
-# =============================================================================
-# STAGE 2: PRIMER REMOVAL (Cutadapt)
-# =============================================================================
+
+# STAGE 2: PRIMER REMOVAL (Cutadapt)----------------------
+
 # Remove V3-V4 amplicon primers (341F / 785R).
 # Reads without detectable primers are discarded.
 
@@ -145,9 +138,9 @@ stage_2_primer_removal() {
         --o-visualization "${RESULTS_DIR}/demux-trimmed-summary.qzv"
 }
 
-# =============================================================================
-# STAGE 3: DENOISING WITH DADA2
-# =============================================================================
+
+# STAGE 3: DENOISING WITH DADA2----------------------
+
 # DADA2 performs:
 #   - Quality-based read truncation
 #   - Error model learning & denoising
@@ -189,9 +182,9 @@ stage_3_dada2_denoise() {
         --m-sample-metadata-file "${METADATA_FILE}"
 }
 
-# =============================================================================
-# STAGE 4: TAXONOMIC CLASSIFICATION (SILVA 138.1)
-# =============================================================================
+
+# STAGE 4: TAXONOMIC CLASSIFICATION (SILVA 138.1)----------------------
+
 # Taxonomy is assigned using a Naive Bayes classifier trained on the
 # SILVA 138.1 SSURef NR99 database, region-specifically extracted for
 # the 341F-785R amplicon region (~444 bp).
@@ -214,9 +207,9 @@ stage_4_taxonomy() {
         --o-visualization "${RESULTS_DIR}/taxonomy_16S.qzv"
 }
 
-# =============================================================================
-# STAGE 5: QUALITY FILTERING
-# =============================================================================
+
+# STAGE 5: QUALITY FILTERING----------------------
+
 # Remove:
 #   (a) Samples with total read count < 1000 (insufficient depth)
 #   (b) ASVs classified as mitochondria or chloroplast (non-bacterial)
@@ -245,9 +238,8 @@ stage_5_filtering() {
         --o-visualization "${RESULTS_DIR}/table_16S_final.qzv"
 }
 
-# =============================================================================
-# STAGE 6: TAXONOMIC BARPLOT VISUALIZATION
-# =============================================================================
+
+# STAGE 6: TAXONOMIC BARPLOT VISUALIZATION----------------------
 
 stage_6_taxonomy_barplot() {
     log_step "6 - Taxonomic Barplot"
@@ -259,12 +251,11 @@ stage_6_taxonomy_barplot() {
         --o-visualization "${RESULTS_DIR}/taxa-bar-plots.qzv"
 }
 
-# =============================================================================
-# STAGE 7: PHYLOGENETIC TREE RECONSTRUCTION
-# =============================================================================
+=
+# STAGE 7: PHYLOGENETIC TREE RECONSTRUCTION----------------------
+
 # Build a rooted phylogenetic tree required for phylogenetic diversity
 # metrics (Faith's PD, UniFrac).
-#
 # Pipeline: MAFFT alignment → alignment masking → FastTree (ML) → midpoint rooting
 
 stage_7_phylogeny() {
@@ -279,16 +270,8 @@ stage_7_phylogeny() {
         --p-n-threads ${N_THREADS}
 }
 
-# =============================================================================
-# STAGE 8: ALPHA & BETA DIVERSITY ANALYSIS
-# =============================================================================
-# Compute core diversity metrics with rarefaction normalization.
-#
-# Alpha diversity: Shannon, Faith's PD, Observed Features, Evenness
-# Beta diversity:  Bray-Curtis, Jaccard, Weighted/Unweighted UniFrac
-#
-# Rarefaction depth is set to the minimum sample frequency to ensure
-# even comparison across all samples.
+
+# STAGE 8: ALPHA & BETA DIVERSITY ANALYSIS----------------------
 
 stage_8_diversity() {
     log_step "8 - Alpha & Beta Diversity Analysis"
@@ -301,9 +284,9 @@ stage_8_diversity() {
         --output-dir "${RESULTS_DIR}/diversity-metrics-results"
 }
 
-# =============================================================================
-# STAGE 9: EXPORT FOR DOWNSTREAM ANALYSIS (R / phyloseq)
-# =============================================================================
+
+# STAGE 9: EXPORT FOR DOWNSTREAM ANALYSIS (R / phyloseq)----------------------
+
 # Export QIIME 2 artifacts to standard formats for analysis in R:
 #   - Rooted tree → Newick (.nwk)
 #   - Feature table → BIOM v1.0 (JSON) with taxonomy & metadata
@@ -359,9 +342,9 @@ stage_9_export() {
     echo "     BIOM:     ${EXPORT_DIR}/16S_bile_acid.biom"
 }
 
-# =============================================================================
-# MAIN EXECUTION
-# =============================================================================
+
+# MAIN EXECUTION----------------------
+
 # Run all stages sequentially. Each stage can also be executed independently
 # by calling the individual function.
 #

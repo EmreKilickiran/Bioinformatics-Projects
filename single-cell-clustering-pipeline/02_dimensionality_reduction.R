@@ -1,6 +1,4 @@
-# =============================================================================
 # 02_dimensionality_reduction.R — PCA, Clustering & UMAP
-# =============================================================================
 #
 # Performs dimensionality reduction and unsupervised clustering:
 #   1. PCA on highly variable genes (50 PCs computed, 25 used)
@@ -11,9 +9,6 @@
 #
 # Input:  seurat_preprocessed.rds
 # Output: seurat_clustered.rds (with PCA, UMAP, cluster assignments)
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
 
 suppressPackageStartupMessages({
   library(Seurat)
@@ -32,9 +27,8 @@ FINAL_RESOLUTION <- 0.15 # Selected after resolution sweep
 # Resolution sweep range for evaluation
 RESOLUTIONS <- c(0.1, 0.3, 0.5, 0.7, 0.8, 0.9, 1.0)
 
-# =============================================================================
+
 # STEP 1: PCA
-# =============================================================================
 
 cat("[1/4] Running PCA (", N_PCS_COMPUTE, "components)...\n")
 
@@ -60,9 +54,8 @@ dev.off()
 
 cat("  Elbow plot saved. Inspect to verify PC selection.\n")
 
-# =============================================================================
+
 # STEP 2: Resolution Sweep
-# =============================================================================
 
 cat("[2/4] Testing clustering resolutions:", paste(RESOLUTIONS, collapse = ", "), "\n")
 
@@ -79,9 +72,8 @@ for (res in RESOLUTIONS) {
   dev.off()
 }
 
-# =============================================================================
+
 # STEP 3: Final Clustering
-# =============================================================================
 
 cat("[3/4] Final clustering at resolution =", FINAL_RESOLUTION, "\n")
 
@@ -95,9 +87,8 @@ Idents(seu) <- paste0("RNA_snn_res.", FINAL_RESOLUTION)
 n_clusters <- length(unique(Idents(seu)))
 cat("  Clusters found:", n_clusters, "\n")
 
-# =============================================================================
+
 # STEP 4: UMAP
-# =============================================================================
 
 cat("[4/4] Computing UMAP embedding (", N_PCS_USE, "PCs)...\n")
 

@@ -1,6 +1,5 @@
-# =============================================================================
-# 02_alpha_diversity.R — Alpha Diversity Analysis
-# =============================================================================
+# 
+# 02_alpha_diversity.R - Alpha Diversity Analysis
 #
 # Computes alpha diversity metrics (Observed, Chao1, Shannon, Simpson) and
 # performs statistical comparisons using:
@@ -11,9 +10,7 @@
 #   - Violin + boxplots with significance annotations (Treatment & Bodysite)
 #   - Pairwise p-value heatmaps for all metric × grouping combinations
 #   - CSV tables of pairwise test results
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
+
 
 source("R/00_config.R")
 
@@ -28,9 +25,8 @@ METRICS <- c("Observed", "Chao1", "Shannon", "Simpson")
 cat("Loaded alpha diversity for", nrow(alpha_div), "samples\n")
 cat("Metrics:", paste(METRICS, collapse = ", "), "\n")
 
-# =============================================================================
+
 # Pairwise Wilcoxon Tests
-# =============================================================================
 
 run_pairwise_wilcoxon <- function(df, group_var, metric) {
   test <- pairwise.wilcox.test(df[[metric]], df[[group_var]],
@@ -60,9 +56,8 @@ write.csv(results_treatment,
 
 cat("Pairwise Wilcoxon tests complete.\n")
 
-# =============================================================================
+
 # P-value Heatmaps
-# =============================================================================
 
 plot_pvalue_heatmap <- function(df, metric, grouping) {
   df_m <- df %>% filter(Metric == metric, Grouping == grouping)
@@ -102,9 +97,8 @@ combined_heatmap <- (heatmaps[[1]] | heatmaps[[2]]) /
 ggsave(file.path(RESULTS_DIR, "02_PairwiseWilcoxon_Heatmaps.pdf"),
        plot = combined_heatmap, width = 16, height = 18)
 
-# =============================================================================
+
 # Violin + Boxplots with Significance Annotations
-# =============================================================================
 
 plot_alpha_diversity <- function(df, group_var, metric) {
   kw   <- kruskal.test(as.formula(paste(metric, "~", group_var)), data = df)

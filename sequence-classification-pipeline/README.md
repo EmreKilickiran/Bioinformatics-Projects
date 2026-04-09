@@ -37,7 +37,7 @@ Raw FASTQ → Lane Merging → Primer Removal → DADA2 Denoising → Taxonomic 
                        │
               ┌────────┴────────┐
               │                 │
-    ┌─────────▼────────┐  ┌────▼─────────────────┐
+    ┌─────────▼────────┐  ┌─────▼────────────────┐
     │  ASV Feature     │  │  Representative      │
     │  Table           │  │  Sequences           │
     └─────────┬────────┘  └────┬─────────────────┘

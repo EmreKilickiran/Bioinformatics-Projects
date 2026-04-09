@@ -125,10 +125,10 @@ source("R/03_beta_diversity.R")
 ### Data Setup
 
 Place your input files in the `data/` directory:
-- `DataExport.xlsx` — 16S abundance tables (sheets: `Abund_Phylum_wide`, `Abund_Species_wide`, `Abund_Genus_wide`, `Alpha_Diversity_wide`, `Beta_Diversity_wunifrac`)
-- `MappingFile-v12.txt` — Sample metadata (tab-delimited)
-- `TPM_normalized_data.csv` — RNA-Seq TPM expression matrix
-- `merged_metadata_corrected.csv` — Merged metadata linking SampleID ↔ AnimalID
+- `DataExport.xlsx` - 16S abundance tables (sheets: `Abund_Phylum_wide`, `Abund_Species_wide`, `Abund_Genus_wide`, `Alpha_Diversity_wide`, `Beta_Diversity_wunifrac`)
+- `MappingFile-v12.txt` - Sample metadata (tab-delimited)
+- `TPM_normalized_data.csv` - RNA-Seq TPM expression matrix
+- `merged_metadata_corrected.csv` - Merged metadata linking SampleID ↔ AnimalID
 
 ## Key Parameters
 
@@ -147,4 +147,4 @@ Place your input files in the `data/` directory:
 
 ## Context
 
-This pipeline was developed as part of a HiWi research position at the **Schneider Lab, Center for Regenerative Therapies Dresden (CRTD), TU Dresden**, investigating how periodontitis-driven oral dysbiosis reshapes the gut microbiome and accelerates liver fibroinflammation through the oral-gut-liver axis. The work resulted in co-authorship on a manuscript currently under peer review at *Nature Microbiome*.
+This pipeline was developed as part of a HiWi research position at the **Schneider Lab, Center for Regenerative Therapies Dresden (CRTD), TU Dresden**, investigating how periodontitis-driven oral dysbiosis reshapes the gut microbiome and accelerates liver fibroinflammation through the oral-gut-liver axis. 

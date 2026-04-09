@@ -1,6 +1,4 @@
-# =============================================================================
 # 05_functional_enrichment.R — GO & KEGG Enrichment Analysis
-# =============================================================================
 #
 # Performs over-representation analysis (ORA) on differentially expressed genes:
 #   - GO Biological Process (BP)
@@ -12,9 +10,7 @@
 #
 # Input:  04_DE_genes_vsNORM.tsv (from Module 4)
 # Output: Dotplots (PDF) + enrichment tables (TSV) per comparison
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
+
 
 if (!requireNamespace("BiocManager", quietly = TRUE))
   install.packages("BiocManager", repos = "https://cloud.r-project.org")
@@ -110,9 +106,8 @@ dt <- dt[!is.na(gene) & nzchar(gene)]
 
 cat("  Total DE entries:", nrow(dt), "\n")
 
-# =============================================================================
+
 # PART A: Per Cell Type × Disease Stage
-# =============================================================================
 
 cat("\n--- Part A: Cell-type-specific enrichment ---\n")
 
@@ -150,9 +145,8 @@ for (i in seq_len(nrow(combos))) {
            file.path(od, "KEGG_DOWN"))
 }
 
-# =============================================================================
+
 # PART B: Treatment-Level (All Cell Types Merged)
-# =============================================================================
 
 cat("\n--- Part B: Treatment-level enrichment ---\n")
 

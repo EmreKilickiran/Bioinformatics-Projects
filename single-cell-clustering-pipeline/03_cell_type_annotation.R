@@ -1,6 +1,4 @@
-# =============================================================================
 # 03_cell_type_annotation.R — Automated Cell Type Annotation (SingleR)
-# =============================================================================
 #
 # Annotates 26 clusters into 11 cell types using SingleR with pseudobulk
 # aggregation against the MacParland et al. human liver atlas (GSE115469).
@@ -13,9 +11,7 @@
 #
 # Input:  seurat_clustered.rds + GSE115469 reference files
 # Output: seurat_annotated.rds (with cell_type metadata)
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
+
 
 suppressPackageStartupMessages({
   library(Seurat)
@@ -34,9 +30,8 @@ cat("\n=== Module 3: Cell Type Annotation (SingleR) ===\n")
 REFERENCE_EXPR <- file.path(DATA_DIR, "GSE115469_Data.csv.gz")
 REFERENCE_META <- file.path(DATA_DIR, "GSE115469_CellClusterType.txt.gz")
 
-# =============================================================================
+
 # STEP 1: Load Clustered Object
-# =============================================================================
 
 cat("[1/4] Loading clustered object...\n")
 
@@ -55,9 +50,8 @@ var_genes <- VariableFeatures(obj)
 
 cat("  Clusters:", length(unique(Idents(obj))), "\n")
 
-# =============================================================================
+
 # STEP 2: Build Liver Reference (MacParland et al.)
-# =============================================================================
 
 cat("[2/4] Building liver reference atlas...\n")
 
@@ -73,9 +67,8 @@ sce_ref <- SingleCellExperiment(
 
 cat("  Reference cells:", ncol(sce_ref), "\n")
 
-# =============================================================================
+
 # STEP 3: Pseudobulk SingleR
-# =============================================================================
 
 cat("[3/4] Running SingleR (pseudobulk per cluster)...\n")
 
@@ -112,9 +105,8 @@ pred <- SingleR(
   BPPARAM   = bp
 )
 
-# =============================================================================
+
 # STEP 4: Apply Annotations
-# =============================================================================
 
 cat("[4/4] Applying cell type annotations...\n")
 

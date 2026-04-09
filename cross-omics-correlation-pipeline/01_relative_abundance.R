@@ -1,6 +1,5 @@
-# =============================================================================
-# 01_relative_abundance.R — Taxonomic Composition Visualization
-# =============================================================================
+# 
+# 01_relative_abundance.R — Taxonomic Composition Visualization 
 #
 # Constructs a taxonomic abundance matrix from raw 16S sequencing data using
 # phyloseq in R, applying relative abundance normalization and threshold-based
@@ -9,9 +8,6 @@
 # Output:
 #   - Relative abundance barplot (Phylum level, Top 10 >= 1%)
 #   - Double-strip faceted by Bodysite and Treatment
-#
-# Author : Yunus Emre Kılıçkıran
-# =============================================================================
 
 source("R/00_config.R")
 
